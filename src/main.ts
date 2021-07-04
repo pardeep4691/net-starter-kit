@@ -1,5 +1,7 @@
 import express from 'express';
 import applyBasicMiddleware from './middleman/basic.middleware';
+import dotenv from 'dotenv';
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 class Main {
   private app = express();
   constructor() {
@@ -8,6 +10,7 @@ class Main {
     this.route();
   }
   startServer = () => {
+    console.log('SERVER START ON', process.env.PORT || 8000);
     this.app.listen(process.env.PORT || 8000);
   };
   route = () => {
@@ -16,5 +19,10 @@ class Main {
     });
   };
 }
+
+
+
+
+
 
 export default new Main();
